@@ -40,10 +40,11 @@ pip install -r requirements.txt
 The pretained checkpoint can be found at [Google Drive](https://drive.google.com/drive/folders/1CidiSqtHgJTBDAHQ746_on_YR0boHDYB?usp=sharing) or [Huggingface](https://huggingface.co/ByteDance/MegaTTS3). Please download them and put them to ``./checkpoints/xxx``. (The checkpoint is currently being prepared and is expected to be completed within approximately one day.)
 
 > [!IMPORTANT]  
-> For security issues, we do not upload the parameters of WaveVAE encoder to the above links. You can only use the pre-extracted latents in './assets/*.npy' for inference. If you have any questions or suggestions for our model, please email us.  
-> - If you want to synthesize speech for speaker A, you need "A.wav" and "A.npy" in the same directory.
-> - The latent file for other speakers can be accessed from [this link](https://drive.google.com/drive/folders/1QhcHWcy20JfqWjgqZX1YM3I6i9u4oNlr?usp=sharing). You can also upload wav files (within 24s) to [this link](https://drive.google.com/drive/folders/1gCWL1y_2xu9nIFhUX_OW5MbcFuB7J5Cl?usp=sharing) if you want to synthesize voices for some specific speakers. After we have ensure that your uploaded voices are free from safety issues, we will upload their latent files as soon as possible.
-
+> For security issues, we do not upload the parameters of WaveVAE encoder to the above links. You can only use the pre-extracted latents from [link1](https://drive.google.com/drive/folders/1QhcHWcy20JfqWjgqZX1YM3I6i9u4oNlr?usp=sharing) for inference. If you want to synthesize speech for speaker A, you need "A.wav" and "A.npy" in the same directory. If you have any questions or suggestions for our model, please email us.
+> 
+> This project is primarily intended for academic purposes. For academic datasets requiring evaluation, you may upload them to the voice request queue in [link2](https://drive.google.com/drive/folders/1gCWL1y_2xu9nIFhUX_OW5MbcFuB7J5Cl?usp=sharing) (within 24s for each clip). After verifying that your uploaded voices are free from safety issues, we will upload their latent files to [link1](https://drive.google.com/drive/folders/1QhcHWcy20JfqWjgqZX1YM3I6i9u4oNlr?usp=sharing) as soon as possible.
+> 
+> In the coming days, we will also prepare and release the latent representations for some common TTS benchmarks.
 
 ## Inference
 **Command-Line Usage (Standard)**
