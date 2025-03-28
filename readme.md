@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```
 **Model Download**
 
-The pretained checkpoint can be found at [Google Drive](https://drive.google.com/drive/folders/1CidiSqtHgJTBDAHQ746_on_YR0boHDYB?usp=sharing) or [Huggingface](https://huggingface.co/ByteDance/MegaTTS3). Please download them and put them to ``./checkpoints/xxx``.
+The pretained checkpoint can be found at [Google Drive](https://drive.google.com/drive/folders/1CidiSqtHgJTBDAHQ746_on_YR0boHDYB?usp=sharing) or [Huggingface](https://huggingface.co/ByteDance/MegaTTS3). Please download them and put them to ``./checkpoints/xxx``. (The checkpoint is currently being prepared and is expected to be completed within approximately one day.)
 
 > [!IMPORTANT]  
 > For security issues, we do not upload the parameters of WaveVAE encoder to the above links. You can only use the pre-extracted latents in './assets/*.npy' for inference. If you have any questions or suggestions for our model, please email us.  
