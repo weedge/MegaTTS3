@@ -14,7 +14,7 @@
 - 🚀**Lightweight and Efficient:** The backbone of the TTS Diffusion Transformer has only 0.45B parameters.
 - 👍**Ultra High-Quality Voice Cloning:** See the demo video below! We also report results of recent TTS models on the Seed test sets in the following table.
 - 🌍**Bilingual Support:** Supports both Chinese and English, and code-switching.
-- ✍️**Controllable:** Supports accent intensity control ✅ and fine-grained pronunciation/duration adjustment (comming soon).
+- ✍️**Controllable:** Supports accent intensity control ✅ and fine-grained pronunciation/duration adjustment (coming soon).
 
 [MegaTTS 3 Demo Video](https://github.com/user-attachments/assets/0174c111-f392-4376-a34b-0b5b8164aacc)
 
