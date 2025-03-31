@@ -52,7 +52,7 @@ The pretained checkpoint can be found at [Google Drive](https://drive.google.com
 # p_w (intelligibility weight), t_w (similarity weight). Typically, prompt with more noises requires higher p_w and t_w
 CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/Chinese_prompt.wav'  --input_text "另一边的桌上,一位读书人嗤之以鼻道,'佛子三藏,神子燕小鱼是什么样的人物,李家的那个李子夜如何与他们相提并论？'" --output_dir ./gen
 
-# As long as audio volumn and pronunciation are appropriate, increasing --t_w within reasonable ranges (2.0~5.0)
+# As long as audio volume and pronunciation are appropriate, increasing --t_w within reasonable ranges (2.0~5.0)
 # will increase the generated speech's expressiveness and similarity (especially for some emotional cases).
 CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text 'As his long promised tariff threat turned into reality this week, top human advisers began fielding a wave of calls from business leaders, particularly in the automotive sector, along with lawmakers who were sounding the alarm.' --output_dir ./gen --p_w 2.0 --t_w 3.0
 ```
