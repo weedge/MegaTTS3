@@ -69,6 +69,8 @@ set CUDA_VISIBLE_DEVICES=0
 **Requirements (for Docker)**
 ``` sh
 # [The Docker version is currently under testing]
+
+# ! You should download the pretrained checkpoint before running the following command
 docker build . -t megatts3:latest
 
 # For GPU inference
