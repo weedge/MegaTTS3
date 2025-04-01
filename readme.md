@@ -12,7 +12,7 @@
 
 ## Key features
 - 🚀**Lightweight and Efficient:** The backbone of the TTS Diffusion Transformer has only 0.45B parameters.
-- 👍**Ultra High-Quality Voice Cloning:** See the demo video below! We also report results of recent TTS models on the Seed test sets in the following table.
+- 🎧**Ultra High-Quality Voice Cloning:** See the demo video below! We also report results of recent TTS models on the Seed test sets in the following table. 🎉Submit a sample on [link2](https://drive.google.com/drive/folders/1gCWL1y_2xu9nIFhUX_OW5MbcFuB7J5Cl?usp=sharing) to receive voice latents you can use locally.
 - 🌍**Bilingual Support:** Supports both Chinese and English, and code-switching.
 - ✍️**Controllable:** Supports accent intensity control ✅ and fine-grained pronunciation/duration adjustment (coming soon).
 
