@@ -100,7 +100,7 @@ class MegaTTS3DiTInfer():
 
         ''' Load Dict '''
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        ling_dict = json.load(open(f"{current_dir}/utils/text_utils/dict.json"))
+        ling_dict = json.load(open(f"{current_dir}/utils/text_utils/dict.json", encoding='utf-8-sig'))
         self.ling_dict = {k: TokenTextEncoder(None, vocab_list=ling_dict[k], replace_oov='<UNK>') for k in ['phone', 'tone']}
         self.token_encoder = token_encoder = self.ling_dict['phone']
         ph_dict_size = len(token_encoder)

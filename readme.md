@@ -28,7 +28,7 @@
 
 
 ## Installation
-**Requirements**
+**Requirements (for Linux)**
 ``` sh
 # Create a python 3.9 conda env (you could also use virtualenv)
 conda create -n megatts3-env python=3.9
@@ -37,8 +37,49 @@ pip install -r requirements.txt
 
 # Set the root directory
 export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH" #Linux/Mac
-set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" #Windows
+# If you encounter bugs with pydantic in inference, you should check the version of pydantic and gradio.
 ```
+
+**Requirements (for Windows)**
+``` sh
+# [The Windows version is currently under testing]
+# Comment below dependence in requirements.txt:
+# # WeTextProcessing==1.0.4.1
+
+# Create a python 3.10 conda env (you could also use virtualenv)
+conda create -n megatts3-env python=3.10
+conda activate megatts3-env
+pip install -r requirements.txt
+conda install -y -c conda-forge pynini==2.1.5
+pip install WeTextProcessing==1.0.3
+
+# [Optional] If you want GPU inference, you may need to install specific version of PyTorch for your GPU from https://pytorch.org/.
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+# Install specific version of gradio
+# If you encounter bugs with pydantic in inference, you should check the version of pydantic and gradio.
+pip install gradio==4.12.0 gradio_client==0.8.0
+
+# Set environment variable
+set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" #Windows
+# [Optional] Set GPU
+set CUDA_VISIBLE_DEVICES=0
+```
+
+**Requirements (for Docker)**
+``` sh
+# [The Docker version is currently under testing]
+docker build . -t megatts3:latest
+
+# For GPU inference
+docker run -it -p 7929:7929 --gpus all -e CUDA_VISIBLE_DEVICES=0 megatts3:latest
+# For CPU inference
+docker run -it -p 7929:7929  megatts3:latest
+
+# Visit http://0.0.0.0:7929/ for gradio.
+```
+
+
 **Model Download**
 
 The pretrained checkpoint can be found at [Google Drive](https://drive.google.com/drive/folders/1CidiSqtHgJTBDAHQ746_on_YR0boHDYB?usp=sharing) or [Huggingface](https://huggingface.co/ByteDance/MegaTTS3). Please download them and put them to ``./checkpoints/xxx``.
