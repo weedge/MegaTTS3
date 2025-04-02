@@ -41,6 +41,8 @@ export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH" #Linux/Mac
 
 # [Optional] Set GPU
 export CUDA_VISIBLE_DEVICES=0
+
+# [Note] if you encounter bugs related with pydantic, you can install httpx==0.28.1, gradio==4.44.1
 ```
 
 **Requirements (for Windows)**
@@ -68,6 +70,8 @@ set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%"
 conda env config vars set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # For conda users
 # [Optional] Set GPU
 set CUDA_VISIBLE_DEVICES=0
+
+# [Note] if you encounter bugs related with pydantic, you can install httpx==0.28.1, gradio==4.44.1
 ```
 
 **Requirements (for Docker)**
@@ -82,6 +86,8 @@ docker run -it -p 7929:7929 --gpus all -e CUDA_VISIBLE_DEVICES=0 megatts3:latest
 docker run -it -p 7929:7929  megatts3:latest
 
 # Visit http://0.0.0.0:7929/ for gradio.
+
+# [Note] if you encounter bugs related with pydantic, you can install httpx==0.28.1, gradio==4.44.1
 ```
 
 
