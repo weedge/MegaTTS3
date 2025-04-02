@@ -61,7 +61,8 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 pip install gradio==4.12.0 gradio_client==0.8.0
 
 # Set environment variable
-set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" #Windows
+set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%"
+conda env config vars set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # For conda users
 # [Optional] Set GPU
 set CUDA_VISIBLE_DEVICES=0
 ```
