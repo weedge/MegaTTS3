@@ -42,7 +42,7 @@ export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH" #Linux/Mac
 # [Optional] Set GPU
 export CUDA_VISIBLE_DEVICES=0
 
-# [Note] if you encounter bugs related with pydantic, you can install httpx==0.28.1, gradio==4.44.1
+# [Note] if you encounter bugs related with httpx, please check that whether your environmental variable "no_proxy" has patterns like "::"
 ```
 
 **Requirements (for Windows)**
