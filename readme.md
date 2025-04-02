@@ -30,8 +30,8 @@
 ## Installation
 **Requirements (for Linux)**
 ``` sh
-# Create a python 3.9 conda env (you could also use virtualenv)
-conda create -n megatts3-env python=3.9
+# Create a python 3.10 conda env (you could also use virtualenv)
+conda create -n megatts3-env python=3.10
 conda activate megatts3-env
 pip install -r requirements.txt
 
