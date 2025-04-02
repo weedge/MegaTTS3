@@ -61,9 +61,7 @@ pip install WeTextProcessing==1.0.3
 # [Optional] If you want GPU inference, you may need to install specific version of PyTorch for your GPU from https://pytorch.org/.
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 
-# Install specific version of gradio
-# If you encounter bugs with pydantic in inference, you should check the version of pydantic and gradio.
-pip install gradio==4.12.0 gradio_client==0.8.0
+# [Note] if you encounter bugs related with `ffprobe` or `ffmpeg`, you can install it through `conda install -c conda-forge ffmpeg`
 
 # Set environment variable
 set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%"
@@ -71,7 +69,6 @@ conda env config vars set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # For co
 # [Optional] Set GPU
 set CUDA_VISIBLE_DEVICES=0
 
-# [Note] if you encounter bugs related with pydantic, you can install httpx==0.28.1, gradio==4.44.1
 ```
 
 **Requirements (for Docker)**
