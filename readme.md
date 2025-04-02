@@ -28,18 +28,67 @@
 
 
 ## Installation
-**Requirements**
+**Requirements (for Linux)**
 ``` sh
-# Create a python 3.9 conda env (you could also use virtualenv)
-conda create -n megatts3-env python=3.9
+# Create a python 3.10 conda env (you could also use virtualenv)
+conda create -n megatts3-env python=3.10
 conda activate megatts3-env
 pip install -r requirements.txt
 
 # Set the root directory
-export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH" #Linux/Mac
-set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" #Windows
-$env:PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" #Powershell on Windows
+export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH"
+
+# [Optional] Set GPU
+export CUDA_VISIBLE_DEVICES=0
+
+# If you encounter bugs with pydantic in inference, you should check if the versions of pydantic and gradio are matched.
+# [Note] if you encounter bugs related with httpx, please check that whether your environmental variable "no_proxy" has patterns like "::"
 ```
+
+**Requirements (for Windows)**
+``` sh
+# [The Windows version is currently under testing]
+# Comment below dependence in requirements.txt:
+# # WeTextProcessing==1.0.4.1
+
+# Create a python 3.10 conda env (you could also use virtualenv)
+conda create -n megatts3-env python=3.10
+conda activate megatts3-env
+pip install -r requirements.txt
+conda install -y -c conda-forge pynini==2.1.5
+pip install WeTextProcessing==1.0.3
+
+# [Optional] If you want GPU inference, you may need to install specific version of PyTorch for your GPU from https://pytorch.org/.
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+# [Note] if you encounter bugs related with `ffprobe` or `ffmpeg`, you can install it through `conda install -c conda-forge ffmpeg`
+
+# Set environment variable for root directory
+set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # Windows
+$env:PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # Powershell on Windows
+conda env config vars set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # For conda users
+
+# [Optional] Set GPU
+set CUDA_VISIBLE_DEVICES=0 # Windows
+$env:CUDA_VISIBLE_DEVICES=0 # Powershell on Windows
+
+```
+
+**Requirements (for Docker)**
+``` sh
+# [The Docker version is currently under testing]
+# ! You should download the pretrained checkpoint before running the following command
+docker build . -t megatts3:latest
+
+# For GPU inference
+docker run -it -p 7929:7929 --gpus all -e CUDA_VISIBLE_DEVICES=0 megatts3:latest
+# For CPU inference
+docker run -it -p 7929:7929  megatts3:latest
+
+# Visit http://0.0.0.0:7929/ for gradio.
+```
+
+
 **Model Download**
 
 The pretrained checkpoint can be found at [Google Drive](https://drive.google.com/drive/folders/1CidiSqtHgJTBDAHQ746_on_YR0boHDYB?usp=sharing) or [Huggingface](https://huggingface.co/ByteDance/MegaTTS3). Please download them and put them to ``./checkpoints/xxx``.
@@ -53,33 +102,29 @@ The pretrained checkpoint can be found at [Google Drive](https://drive.google.co
 
 ## Inference
 
-> [!TIP]
-> If you are using PowerShell on Windows,  
-> the environment variable `CUDA_VISIBLE_DEVICES=0` should be provided in the form of `$env:CUDA_VISIBLE_DEVICES=0`.
-
 **Command-Line Usage (Standard)**
 ``` bash
 # p_w (intelligibility weight), t_w (similarity weight). Typically, prompt with more noises requires higher p_w and t_w
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/Chinese_prompt.wav'  --input_text "另一边的桌上,一位读书人嗤之以鼻道,'佛子三藏,神子燕小鱼是什么样的人物,李家的那个李子夜如何与他们相提并论？'" --output_dir ./gen
+python tts/infer_cli.py --input_wav 'assets/Chinese_prompt.wav'  --input_text "另一边的桌上,一位读书人嗤之以鼻道,'佛子三藏,神子燕小鱼是什么样的人物,李家的那个李子夜如何与他们相提并论？'" --output_dir ./gen
 
 # As long as audio volume and pronunciation are appropriate, increasing --t_w within reasonable ranges (2.0~5.0)
 # will increase the generated speech's expressiveness and similarity (especially for some emotional cases).
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text 'As his long promised tariff threat turned into reality this week, top human advisers began fielding a wave of calls from business leaders, particularly in the automotive sector, along with lawmakers who were sounding the alarm.' --output_dir ./gen --p_w 2.0 --t_w 3.0
+python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text 'As his long promised tariff threat turned into reality this week, top human advisers began fielding a wave of calls from business leaders, particularly in the automotive sector, along with lawmakers who were sounding the alarm.' --output_dir ./gen --p_w 2.0 --t_w 3.0
 ```
 **Command-Line Usage (for TTS with Accents)**
 ``` bash
 # When p_w (intelligibility weight) ≈ 1.0, the generated audio closely retains the speaker’s original accent. As p_w increases, it shifts toward standard pronunciation. 
 # t_w (similarity weight) is typically set 0–3 points higher than p_w for optimal results.
 # Useful for accented TTS or solving the accent problems in cross-lingual TTS.
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这是一条有口音的音频。' --output_dir ./gen --p_w 1.0 --t_w 3.0
+python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这是一条有口音的音频。' --output_dir ./gen --p_w 1.0 --t_w 3.0
 
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这条音频的发音标准一些了吗？' --output_dir ./gen --p_w 2.5 --t_w 2.5
+python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这条音频的发音标准一些了吗？' --output_dir ./gen --p_w 2.5 --t_w 2.5
 ```
 
 **Web UI Usage**
 ``` bash
 # We also support cpu inference, but it may take about 30 seconds (for 10 inference steps).
-CUDA_VISIBLE_DEVICES=0 python tts/gradio_api.py
+python tts/gradio_api.py
 ```
 
 ## Submodules
