@@ -38,6 +38,9 @@ pip install -r requirements.txt
 # Set the root directory
 export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH" #Linux/Mac
 # If you encounter bugs with pydantic in inference, you should check the version of pydantic and gradio.
+
+# [Optional] Set GPU
+export CUDA_VISIBLE_DEVICES=0
 ```
 
 **Requirements (for Windows)**
@@ -97,26 +100,26 @@ The pretrained checkpoint can be found at [Google Drive](https://drive.google.co
 **Command-Line Usage (Standard)**
 ``` bash
 # p_w (intelligibility weight), t_w (similarity weight). Typically, prompt with more noises requires higher p_w and t_w
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/Chinese_prompt.wav'  --input_text "另一边的桌上,一位读书人嗤之以鼻道,'佛子三藏,神子燕小鱼是什么样的人物,李家的那个李子夜如何与他们相提并论？'" --output_dir ./gen
+python tts/infer_cli.py --input_wav 'assets/Chinese_prompt.wav'  --input_text "另一边的桌上,一位读书人嗤之以鼻道,'佛子三藏,神子燕小鱼是什么样的人物,李家的那个李子夜如何与他们相提并论？'" --output_dir ./gen
 
 # As long as audio volume and pronunciation are appropriate, increasing --t_w within reasonable ranges (2.0~5.0)
 # will increase the generated speech's expressiveness and similarity (especially for some emotional cases).
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text 'As his long promised tariff threat turned into reality this week, top human advisers began fielding a wave of calls from business leaders, particularly in the automotive sector, along with lawmakers who were sounding the alarm.' --output_dir ./gen --p_w 2.0 --t_w 3.0
+python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text 'As his long promised tariff threat turned into reality this week, top human advisers began fielding a wave of calls from business leaders, particularly in the automotive sector, along with lawmakers who were sounding the alarm.' --output_dir ./gen --p_w 2.0 --t_w 3.0
 ```
 **Command-Line Usage (for TTS with Accents)**
 ``` bash
 # When p_w (intelligibility weight) ≈ 1.0, the generated audio closely retains the speaker’s original accent. As p_w increases, it shifts toward standard pronunciation. 
 # t_w (similarity weight) is typically set 0–3 points higher than p_w for optimal results.
 # Useful for accented TTS or solving the accent problems in cross-lingual TTS.
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这是一条有口音的音频。' --output_dir ./gen --p_w 1.0 --t_w 3.0
+python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这是一条有口音的音频。' --output_dir ./gen --p_w 1.0 --t_w 3.0
 
-CUDA_VISIBLE_DEVICES=0 python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这条音频的发音标准一些了吗？' --output_dir ./gen --p_w 2.5 --t_w 2.5
+python tts/infer_cli.py --input_wav 'assets/English_prompt.wav' --input_text '这条音频的发音标准一些了吗？' --output_dir ./gen --p_w 2.5 --t_w 2.5
 ```
 
 **Web UI Usage**
 ``` bash
 # We also support cpu inference, but it may take about 30 seconds (for 10 inference steps).
-CUDA_VISIBLE_DEVICES=0 python tts/gradio_api.py
+python tts/gradio_api.py
 ```
 
 ## Submodules
