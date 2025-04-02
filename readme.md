@@ -36,12 +36,12 @@ conda activate megatts3-env
 pip install -r requirements.txt
 
 # Set the root directory
-export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH" #Linux/Mac
-# If you encounter bugs with pydantic in inference, you should check the version of pydantic and gradio.
+export PYTHONPATH="/path/to/MegaTTS3:$PYTHONPATH"
 
 # [Optional] Set GPU
 export CUDA_VISIBLE_DEVICES=0
 
+# If you encounter bugs with pydantic in inference, you should check if the versions of pydantic and gradio are matched.
 # [Note] if you encounter bugs related with httpx, please check that whether your environmental variable "no_proxy" has patterns like "::"
 ```
 
@@ -63,11 +63,14 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 
 # [Note] if you encounter bugs related with `ffprobe` or `ffmpeg`, you can install it through `conda install -c conda-forge ffmpeg`
 
-# Set environment variable
-set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%"
+# Set environment variable for root directory
+set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # Windows
+$env:PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # Powershell on Windows
 conda env config vars set PYTHONPATH="C:\path\to\MegaTTS3;%PYTHONPATH%" # For conda users
+
 # [Optional] Set GPU
-set CUDA_VISIBLE_DEVICES=0
+set CUDA_VISIBLE_DEVICES=0 # Windows
+$env:CUDA_VISIBLE_DEVICES=0 # Powershell on Windows
 
 ```
 
@@ -98,6 +101,7 @@ The pretrained checkpoint can be found at [Google Drive](https://drive.google.co
 > In the coming days, we will also prepare and release the latent representations for some common TTS benchmarks.
 
 ## Inference
+
 **Command-Line Usage (Standard)**
 ``` bash
 # p_w (intelligibility weight), t_w (similarity weight). Typically, prompt with more noises requires higher p_w and t_w
