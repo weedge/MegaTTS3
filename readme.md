@@ -30,6 +30,10 @@
 ## Installation
 **Requirements (for Linux)**
 ``` sh
+# Clone the repo
+git clone https://github.com/bytedance/MegaTTS3
+cd MegaTTS3
+
 # Create a python 3.10 conda env (you could also use virtualenv)
 conda create -n megatts3-env python=3.10
 conda activate megatts3-env
