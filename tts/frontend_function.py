@@ -92,7 +92,7 @@ def make_dur_prompt(self, mel2ph_ref, ph_ref, tone_ref):
     return incremental_state_dur_prompt, ctx_dur_tokens
 
 ''' Duration Prediction '''
-def dur_pred(self, ctx_dur_tokens, incremental_state_dur_prompt, ph_pred, tone_pred, seg_i, dur_disturb, dur_alpha, is_first, is_final):
+def dur_pred(self, ctx_dur_tokens, incremental_state_dur_prompt, ph_pred, tone_pred, dur_disturb, dur_alpha, is_first, is_final):
     last_dur_token = ctx_dur_tokens[:, -1:]
     last_dur_pos_prompt = ctx_dur_tokens.shape[1]
     incremental_state_dur = deepcopy(incremental_state_dur_prompt)
