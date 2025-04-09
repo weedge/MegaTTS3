@@ -311,6 +311,7 @@ class MegaTTS3DiTInfer:
             wav_pred = combine_audio_segments(wav_pred_, sr=self.sr).astype(float)
             return to_wav_bytes(wav_pred, self.sr)
 
+    @torch.inference_mode()
     def gen(
         self,
         text,
