@@ -231,7 +231,20 @@ class MegaTTS3DiTInfer:
             incremental_state_dur_prompt, ctx_dur_tokens = make_dur_prompt(
                 self, mel2ph_ref, ph_ref, tone_ref
             )
-        print(f"f{ph_ref.shape} {tone_ref.shape} {mel2ph_ref.shape} {vae_latent.shape} {ctx_dur_tokens.shape} {type(incremental_state_dur_prompt)}")
+
+        logging.debug(f"fph_ref:{ph_ref.shape} tone_ref:{tone_ref.shape} mel2ph_ref:{mel2ph_ref.shape} vae_latent:{vae_latent.shape} ctx_dur_tokens:{ctx_dur_tokens.shape}")
+        for key,item in incremental_state_dur_prompt.items():
+            if isinstance(item, (torch.Tensor,np.ndarray)):
+                logging.debug(f"{key}: {item.shape}")
+            elif isinstance(item, dict):
+                for k, v in item.items():
+                    if isinstance(v, (torch.Tensor, np.ndarray)):
+                        logging.debug(f"{key}.{k}: {v.shape}")
+                    else:
+                        logging.debug(f"{key}.{k}: {type(v)}")
+            else:
+                logging.debug(f"{key}: {type(item)}")
+            
 
         return {
             "ph_ref": ph_ref,
