@@ -96,7 +96,7 @@ class MegaTTS3DiTInfer:
         self.wavvae_exp_name = os.path.join(ckpt_root, wavvae_exp_name)
         self.dur_exp_name = os.path.join(ckpt_root, dur_ckpt_path)
         self.g2p_exp_name = os.path.join(ckpt_root, g2p_exp_name)
-        self.build_model(self.device)
+        self.build_model(self.device, **kwargs)
 
         # init text normalizer
         self.zh_normalizer = ZhNormalizer(
@@ -106,13 +106,14 @@ class MegaTTS3DiTInfer:
         # loudness meter
         self.loudness_meter = pyln.Meter(self.sr)
 
-    def build_model(self, device):
+    def build_model(self, device, **kwargs):
         set_hparams(exp_name=self.dit_exp_name, print_hparams=False)
 
         """ Load Dict """
         current_dir = os.path.dirname(os.path.abspath(__file__))
+        dict_file = kwargs.get("dict_file", f"{current_dir}/utils/text_utils/dict.json")
         ling_dict = json.load(
-            open(f"{current_dir}/utils/text_utils/dict.json", encoding="utf-8-sig")
+            open(dict_file, encoding="utf-8-sig")
         )
         self.ling_dict = {
             k: TokenTextEncoder(None, vocab_list=ling_dict[k], replace_oov="<UNK>")
